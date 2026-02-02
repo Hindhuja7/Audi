@@ -1,16 +1,17 @@
-//package AP_program;
+package Leetcode;
 import java.util.*;
-public class odd_even {
+public class check_psoitive {
     public static void main(String[] args)
     {
         Scanner sc=new Scanner(System.in);
         int x=sc.nextInt();
-        if((x&1)==0)
+        int y=sc.nextInt();
+        if((x^y)>0)
         {
-            System.out.print("even");
+            System.out.print(true);
         }
         else{
-            System.out.print("odd");
+            System.out.print(false);
         }
     }
 }
