@@ -1,4 +1,4 @@
-package AP_program;
+//package AP_program;
 
 // The integer array arr[] is given and print the resultant value of the bitwise OR
 // of the sum of all the possible sub-arrays of the given array arr[].
