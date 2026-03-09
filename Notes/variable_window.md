@@ -17,3 +17,5 @@
     
 4. when u need to return the minlen of subarray when sum>=target
     shrink the window when condition becomes valid ,when sum>=target
+
+5. if deletion/removal of (chars or value) in (string or array) is not continous/substring/subarray its not the sliding window.
