@@ -22,7 +22,7 @@ public class segment_min_max{
         {
             return 0;
         }
-        if(l<=low && high<=r)
+        if(l<=low && r<=high)
         {
             return tree[node];
         }
