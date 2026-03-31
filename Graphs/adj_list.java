@@ -14,11 +14,7 @@
 
 // Input:
 // =========
-// Vertices = 3
-// Edges added:
-// 0 1
-// 0 2
-// 1 2
+//
 // Edge removed:
 // 0 1
 // Vertex removed:
