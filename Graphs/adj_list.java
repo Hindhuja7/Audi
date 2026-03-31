@@ -39,33 +39,22 @@
 package Graphs;
 import java.util.*;
 public class adj_list {
+    public static void edge(int x,int u,int v)
+    {
+        List<List<Integer>> l=new ArrayList<>();
+        for(int i=0;i<x;i++)
+        {
+            l.add(new ArrayList());
+        }
+    }
     public static void main(String[] args)
     {
         Scanner sc=new Scanner(System.in);
         int x=sc.nextInt();
-        int[][] arr=new int[x][x];
         for(int i=0;i<x;i++)
         {
-            for(int j=0;j<x;j++)
-            {
-                arr[i][j]=sc.nextInt();
-            }
+           int u=sc.nextInt();
+           int v=sc.nextInt();
         }
-        List<List<Integer>> l=new ArrayList<>();
-        for(int i=0;i<x;i++)
-        {
-            l.add(new ArrayList<>());
-        }
-        for(int i=0;i<x;i++)
-        {
-            for(int j=0;j<x;j++)
-            {
-                if(arr[i][j]>0)
-                {
-                    l.get(i).add(j);
-                }
-            }
-        }
-        System.out.print(l);
     }
 }
