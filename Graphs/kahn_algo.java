@@ -1,61 +1,59 @@
 package Graphs;
 import java.util.*;
 public class kahn_algo {
-    // public static void bfs(int[][] arr,int x)
-    // {
-    //     Queue<Integer> q1=new LinkedList<>();
-    //     int[] indegree=new int[x];
-    //     for(int i=0;i<x;i++)
-    //     {
-    //         for(int j=0;j<x;j++)
-    //         {
-    //             if(arr[i][j]>0)
-    //             {
-    //                 indegree[j]++;
-    //             }
-    //         }
-    //     }
-    //     for(int i=0;i<x;i++)
-    //      {
-    //         if(indegree[i]==0){
-    //             q1.add(i);
-    //         }
-    //     }
-    //     while(!q1.isEmpty())
-    //     {
-    //         int u=q1.poll();
-    //         System.out.print(u+" ");
-    //         for(int i=0;i<x;i++)
-    //         {
-    //             if(arr[u][i]>0)
-    //             {
-    //                 indegree[i]--;
-    //                 if(indegree[i]==0)
-    //                 {
-    //                     q1.add(i);
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-    public static void bfs()
-    public static void main(String[] args)
+    public static void edge(List<List<Integer>> l, int u,int v)
     {
-        Scanner sc=new Scanner(System.in);
-        int x=sc.nextInt();
-        // int[][] arr=new int[x][x];
-        // for(int i=0;i<x;i++)
-        // {
-        //     for(int j=0;j<x;j++)
-        //     {
-        //         arr[i][j]=sc.nextInt();
-        //     }
-        // }
+        l.get(u).add(v);
+    }
+    public static void topo(List<List<Integer>> l,int x)
+    {
+        int[] indegree=new int[x];
         for(int i=0;i<x;i++)
         {
-            int ed1=sc.nextInt();
-            int ed2=sc.nextInt();
+            for(int j:l.get(i))
+            {
+                indegree[j]++;
+            }
         }
-        //bfs(arr,x);
+        Queue<Integer> q=new LinkedList<>();
+        for(int i=0;i<x;i++)
+        {
+            
+                if(indegree[i]==0)
+                {
+                    q.add(i);
+                }
+        }
+        while(!q.isEmpty())
+        {
+            int k=q.poll();
+            System.out.print(k+" ");
+            for(int j=0;j<l.get(k).size();j++)
+            {
+                int o=l.get(k).get(j);
+                indegree[o]--;
+                if(indegree[o]==0)
+                {
+                    q.add(o);
+                }
+            }
+        }
     }
+   public static void main(String[] args)
+   {
+    Scanner sc=new Scanner(System.in);
+    int x=sc.nextInt();
+    List<List<Integer>> l=new ArrayList<>();
+    for(int i=0;i<x;i++)
+    {
+        l.add(new ArrayList());
+    }
+    for(int i=0;i<x;i++)
+    {
+        int u=sc.nextInt();
+        int v=sc.nextInt();
+        edge(l,u,v);
+    }
+    topo(l,x);
+   }
 }
