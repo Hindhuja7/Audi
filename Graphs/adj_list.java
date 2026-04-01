@@ -39,22 +39,102 @@
 package Graphs;
 import java.util.*;
 public class adj_list {
-    public static void edge(int x,int u,int v)
+    public static void edge(List<List<Integer>> l,int u,int v)
     {
-        List<List<Integer>> l=new ArrayList<>();
-        for(int i=0;i<x;i++)
+        l.get(u).add(v);
+    }
+    public static void addvertex(List<List<Integer>> l)
+    {
+        l.add(new ArrayList<>());
+    }
+    public static void removeedge(List<List<Integer>> l,int u,int v)
+    {
+        l.get(u).remove(Integer.valueOf(v));
+    }
+    public static void removever(List<List<Integer>> l,int u)
+    {
+        for(int i=0;i<l.size();i++)
         {
-            l.add(new ArrayList());
+            l.get(i).remove(Integer.valueOf(u));
+        }
+        l.remove(u);
+        for(int i=0;i<l.size();i++)
+        {
+            for(int j=0;j<l.get(i).size();j++)
+            {
+                if(l.get(i).get(j)>u)
+                {
+                    l.get(i).set(j,l.get(i).get(j)-1);
+                }
+            }
         }
     }
+    public static void display(List<List<Integer>> l)
+    {
+        for(int i = 0; i < l.size(); i++)
+        {
+            System.out.print(i + " -> ");
+            for(int v : l.get(i))
+            {
+                System.out.print(v + " ");
+            }
+            System.out.println();
+        }
+    }
+    
     public static void main(String[] args)
     {
         Scanner sc=new Scanner(System.in);
         int x=sc.nextInt();
+        int p=sc.nextInt();
+        List<List<Integer>> l=new ArrayList<>();
         for(int i=0;i<x;i++)
         {
-           int u=sc.nextInt();
+           l.add(new ArrayList<>());
+        }
+        for(int i=0;i<p;i++)
+        {
+            int u=sc.nextInt();
            int v=sc.nextInt();
+           edge(l,u,v);
+        }
+        for(int i=0;i<x;i++)
+        {
+            for(int v:l.get(i))
+            {
+                System.out.print(v+" ");
+            }
+            System.out.println();
+        }
+        int y=sc.nextInt();
+        while(y != -1)
+        {
+            if(y == 1) // remove edge
+            {
+                int u = sc.nextInt();
+                int v = sc.nextInt();
+                removeedge(l, u, v);
+
+                System.out.println("After removing edge (" + u + "," + v + "):");
+                display(l);
+            }
+            else if(y == 2) // remove vertex
+            {
+                int u = sc.nextInt();
+                removever(l, u);
+
+                System.out.println("After removing vertex " + u + ":");
+                display(l);
+            }
+            else if(y == 3) // add vertex
+            {
+                addvertex(l);
+
+                System.out.println("After adding vertex:");
+                display(l);
+            }
+
+            y = sc.nextInt(); // IMPORTANT (update choice)
         }
     }
 }
