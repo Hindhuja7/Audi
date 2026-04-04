@@ -58,6 +58,74 @@ Constraints:
 1 <= prerequisites[i][0], prerequisites[i][1] <= N
 Prerequisites[i][0] != prerequisites[i][1], for any valid i */
 package Graphs;
+import java.util.*;
 public class parallel_course {
-    
+    public static void edge(List<List<Integer>> l,int u,int v)
+    {
+        l.get(u).add(v);
+    }
+    public static void parallel(List<List<Integer>> l,int x,int g)
+    {
+        int[] indegree=new int[x];
+        for(int i=0;i<x;i++)
+        {
+            for(int j:l.get(i))
+            {
+                indegree[j]++;
+            }
+        }
+        Queue<Integer> q=new LinkedList<>();
+        for(int i=0;i<x;i++)
+        {
+            if(indegree[i]==0)
+            {
+                q.add(i);
+            }
+        }
+        int r=0;
+        List<Integer> l1=new ArrayList<>();
+        while(!q.isEmpty())
+        {
+            int g1=Math.min(g,q.size());
+            for(int t=0;t<g1;t++)
+            {
+                int k=q.poll();
+                l1.add(k);
+                for(int j=0;j<l.get(k).size();j++)
+                {
+                    int o=l.get(k).get(j);
+                    indegree[o]--;
+                    if(indegree[o]==0)
+                    {
+                        q.add(o);
+                    }
+                }
+            }
+            r++;
+        }
+        if(l1.size() != x)
+        {
+            r=-1;
+        }
+        System.out.print(r);
+    }
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int x=sc.nextInt();
+         int m = sc.nextInt();
+        List<List<Integer>> l=new ArrayList<>();
+        for(int i=0;i<x;i++)
+        {
+            l.add(new ArrayList<>());
+        }
+        for(int i=0;i<m;i++)
+        {
+            int u=sc.nextInt();
+            int v=sc.nextInt();
+            edge(l,u-1,v-1);
+        }
+        int g=sc.nextInt();
+        parallel(l,x,g);
+    }
 }
