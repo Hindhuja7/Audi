@@ -1,0 +1,1 @@
+by calling synchronised keyword we cannot access another method until it completes its execution

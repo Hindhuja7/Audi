@@ -1,0 +1,377 @@
+1.
+Find employees who earn more than the average salary of all employees.
+
+Expected Output Columns:
+------------------------
++-------+---------+
+| ename | sal     |
++-------+---------+
+
+case=1
+output=ename   sal                                                                     
+JONES   2975.00                                                                 
+BLAKE   2850.00                                                                 
+CLARK   2450.00                                                                 
+SCOTT   3000.00                                                                 
+KEVIN   5000.00                                                                 
+FORD    3000.00 
+
+
+
+2.
+Find the name and salary of the highest-paid employee.
+
+Expected Output Columns:
+------------------------
++-------+---------+
+| ename | sal     |
++-------+---------+
+
+case=1
+output=ename   sal                                                                     
+KEVIN   5000.00
+
+
+
+
+3.
+Find employees who earn more than the highest-paid employee in department 10.
+
+Expected Output Columns:
+------------------------
++-------+---------+--------+
+| ename | sal     | deptno |
++-------+---------+--------+
+
+case=1
+output=ename   sal     deptno                                                          
+JONES   2975.00 20                                                              
+BLAKE   2850.00 30                                                              
+SCOTT   3000.00 20                                                              
+KEVIN   5000.00 40                                                              
+FORD    3000.00 20
+
+
+
+
+4.
+Find employees whose salary is higher than the salary of ‘SCOTT’.
+
+Expected Output Columns:
+------------------------
++-------+---------+
+| ename | sal     |
++-------+---------+
+
+
+
+case=1
+output=ename   sal                                                                     
+KEVIN   5000.00
+
+
+5.
+Find employee who have the same job title as 'FORD'.
+
+Expected Output Columns:
+------------------------
++-------+---------+
+| ename | job     |
++-------+---------+
+
+
+
+case=1
+output=ename   job                                                                     
+SMITH   CLERK                                                                   
+SCOTT   ANALYST                                                                 
+KEVIN   CLERK                                                                   
+JAMES   CLERK                                                                   
+FORD    ANALYST                                                                 
+FORD    CLERK  
+
+
+6.
+Find departments that have at least one employee earning more than 3000.
+
+Expected Output Columns:
+------------------------
++--------+------------+
+| deptno | dname      |
++--------+------------+
+
+
+
+case=1
+output=
+deptno  dname                                                                   
+40      Operations
+
+
+7.
+Find employees who were hired before all employees in department 30.
+
+Expected Output Columns:
+------------------------
++-------+------------+
+| ename | hiredate   |
++-------+------------+
+
+
+case=1
+output=ename   hiredate                                                                
+KEVIN   1990-06-09
+
+
+8.
+Find employees who belong to departments located in 'Dallas'.
+
+Expected Output Columns:
+------------------------
++-------+--------+
+| ename | deptno |
++-------+--------+
+
+
+
+case=1
+output=ename   deptno                                                                  
+SMITH   20                                                                      
+JONES   20                                                                      
+SCOTT   20                                                                      
+KEVIN   20                                                                      
+JAMES   20                                                                      
+FORD    20
+
+
+9.
+Find the second highest salary from employees.
+
+Expected Output Columns:
+------------------------
++-----------------------+
+| second_highest_salary |
++-----------------------+
+
+
+case=1
+output=second_highest_salary                                                           
+3000.00 
+
+
+10.
+Find employees who have the same manager as ‘BLAKE’.
+
+Expected Output Columns:
+------------------------
++-------+------+
+| ename | mgr  |
++-------+------+
+
+
+case=1
+output=ename   mgr                                                                     
+JONES   7839                                                                    
+CLARK   7839
+
+11. 
+Find employees who belong to a department with no employees.
+
+Expected Output Columns:
+------------------------
++---------+
+| dname   |
++---------+
+
+
+
+case=1
+output=
++---------+
+| dname   |
++---------+
+| Finance |
++---------+
+
+12.
+Find the department that has the most employees.
+
+Expected Output Columns:
+------------------------
++--------+----------------+
+| deptno | employee_count |
++--------+----------------+
+
+
+
+case=1
+output=
++--------+----------------+
+| deptno | employee_count |
++--------+----------------+
+|     20 |              6 |
++--------+----------------+
+
+13.
+  Find the department name where ‘JONES’ works.
+
+Expected Output Columns:
+------------------------
++----------+
+| dname    |
++----------+
+
+
+
+case=1
+output=
++----------+
+| dname    |
++----------+
+| Research |
++----------+
+
+14.
+  Write a SQL query to find employees whose name contains ‘A’.
+
+Expected Output Columns:
+------------------------
++--------+-------+
+| ename  | empno |
++--------+-------+
+
+
+
+case=1
+output=
++--------+-------+
+| ename  | empno |
++--------+-------+
+| ALLEN  |  7499 |
+| ALLEN  |  7521 |
+| MARTIN |  7654 |
+| BLAKE  |  7698 |
+| CLARK  |  7782 |
+| JAMES  |  7900 |
++--------+-------+ 
+
+15.
+  Retrieve employees who have a commission greater than their salary.
+
+Expected Output Columns:
+------------------------
++--------+-------+---------+---------+
+| ename  | empno | sal     | comm    |
++--------+-------+---------+---------+
+
+
+
+case=1
+output=
++--------+-------+---------+---------+
+| ename  | empno | sal     | comm    |
++--------+-------+---------+---------+
+| MARTIN |  7654 | 1250.00 | 1400.00 |
++--------+-------+---------+---------+ 
+
+16.
+  Find employees who do not receive commission and whose manager receives commission.
+
+Expected Output Columns:
+------------------------
++-------+-------+------+
+| ename | empno | comm |
++-------+-------+------+
+
+
+
+case=1
+output=
++-------+-------+------+
+| ename | empno | comm |
++-------+-------+------+
+| JONES |  7566 | NULL |
+| BLAKE |  7698 | NULL |
+| CLARK |  7782 | NULL |
++-------+-------+------+
+
+17.
+  Find departments where the number of employees who have a manager is greater than the average number of such employees across all departments.
+
+Expected Output Columns:
+------------------------
++--------+------------------------+
+| deptno | employees_with_manager |
++--------+------------------------+
+
+
+
+
+case=1
+output=
++--------+------------------------+
+| deptno | employees_with_manager |
++--------+------------------------+
+|     20 |                      6 |
++--------+------------------------+
+
+18.
+  Write a SQL query to find the difference between the highest and second highest salary.
+
+Expected Output Columns:
+------------------------
++-------------------+
+| salary_difference |
++-------------------+
+
+
+
+case=1
+output=
++-------------------+
+| salary_difference |
++-------------------+
+|           2000.00 |
++-------------------+
+
+19.
+  Write a SQL query to calculate the total salary and total commission for all employees.
+
+Expected Output Columns:
+------------------------
++--------------+------------------+
+| Total Salary | Total Commission |
++--------------+------------------+
+
+
+
+case=1
+output=
++--------------+------------------+
+| total_salary | total_commission |
++--------------+------------------+
+|     29025.00 |          2200.00 |
++--------------+------------------+
+
+20.
+  Write a SQL query to calculate the Average salary & average commission department-wise
+
+Expected Output Columns:
+------------------------
++--------+-------------+----------------+
+| deptno | avg_salary  | avg_commission |
++--------+-------------+----------------+
+
+
+
+
+case=1
+output=
++--------+-------------+----------------+
+| deptno | avg_salary  | avg_commission |
++--------+-------------+----------------+
+|     10 | 1783.333333 |     100.000000 |
+|     20 | 1970.833333 |       0.000000 |
+|     30 | 1866.666667 |     166.666667 |
+|     40 | 3125.000000 |     700.000000 |
++--------+-------------+----------------+
