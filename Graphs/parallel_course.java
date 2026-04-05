@@ -129,3 +129,54 @@ public class parallel_course {
         parallel(l,x,g);
     }
 }
+
+// public int minNumberOfSemesters(int n, int[][] relations, int k) {
+//         List<List<Integer>> l=new ArrayList<>();
+//         int[] indegree=new int[n];
+//         for(int i=0;i<n;i++)
+//         {
+//             l.add(new ArrayList());
+//         }
+//         for(int[] r:relations)
+//         {
+//             int u=r[0]-1;
+//             int v=r[1]-1;
+//             l.get(u).add(v);
+//             indegree[v]++;
+//         }
+//         Queue<Integer> q=new LinkedList<>();
+
+//         for(int i=0;i<n;i++)
+//         {
+//             if(indegree[i]==0)
+//             {
+//                 q.add(i);
+//             }
+//         }
+//         int r=0;
+//         List<Integer> l1=new ArrayList<>();
+//         while(!q.isEmpty())
+//         {
+//             int g1=Math.min(k,q.size());
+//             for(int t=0;t<g1;t++)
+//             {
+//                 int g=q.poll();
+//                 l1.add(k);
+//                 for(int j=0;j<l.get(g).size();j++)
+//                 {
+//                     int o=l.get(g).get(j);
+//                     indegree[o]--;
+//                     if(indegree[o]==0)
+//                     {
+//                         q.add(o);
+//                     }
+//                 }
+//             }
+//             r++;
+//         }
+//         if(l1.size() != n)
+//         {
+//             return -1;
+//         }
+//         return r;
+//     }
