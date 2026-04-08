@@ -63,7 +63,17 @@ emp ==>   empno int(4) primary key, ename varchar(50) not null,
 +--------+------------+-----------+
 */
 USE fs; 
-
+ select dept.deptno,dept.dname,count(emp.deptno) from emp right join dept on emp.deptno=dept.deptno group by deptno;
++--------+------------+-------------------+
+| deptno | dname      | count(emp.deptno) |
++--------+------------+-------------------+
+|     10 | Accounting |                 3 |
+|     20 | Research   |                 6 |
+|     30 | Sales      |                 3 |
+|     40 | Operations |                 2 |
+|     50 | Finance    |                 0 |
++--------+------------+-------------------+
+5 rows in set (0.00 sec)
 
 /* Write a SQL query to simulate a FULL OUTER JOIN to list all employees and 
 departments, including unmatched rows.
@@ -84,7 +94,7 @@ emp ==>   empno int(4) primary key, ename varchar(50) not null,
 +-------+--------+--------+------------+
 */
 USE fs; 
-
+ select * from emp left join dept on emp.deptno=dept.deptno union select * from emp right join dept on emp.deptno=dept.deptno;
 
 /* Write a SQL query to find employees who are managers of other employees using 
 a self-join.
@@ -106,6 +116,7 @@ emp ==>   empno int(4) primary key, ename varchar(50) not null,
 */
 
 USE fs; 
+select e1.empno,e1.ename,e1.mgr from emp as e1 join emp as e2 on e1.empno=e2.mgr;
 
 
 /* Write a SQL query to generate all possible employee-department combinations 
