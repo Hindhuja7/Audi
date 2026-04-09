@@ -116,7 +116,7 @@ emp ==>   empno int(4) primary key, ename varchar(50) not null,
 */
 
 USE fs; 
-select e1.empno,e1.ename,e1.mgr from emp as e1 join emp as e2 on e1.empno=e2.mgr;
+select distinct(e1.ename) as manager from emp as e1 join emp as e2 on e1.empno=e2.mgr;
 
 
 /* Write a SQL query to generate all possible employee-department combinations 

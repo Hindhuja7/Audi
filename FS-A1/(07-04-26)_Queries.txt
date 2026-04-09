@@ -1,0 +1,265 @@
+61-70
+
+1. /* Write a SQL query to find departments with a total salary greater than 3000,
+excluding salesmen, ordered by total salary.
+
+
++--------+----------+
+| deptno | SUM(sal) |
++--------+----------+
+*/
+USE test; 
+
+SELECT deptno, SUM(sal)
+FROM emp
+WHERE job <> 'SALESMAN'
+GROUP BY deptno
+HAVING SUM(sal) > 3000
+ORDER BY SUM(sal);
+
+case=1
+output=
+deptno  SUM(sal)                                                                
+10      3750.00                                                                 
+40      5000.00                                                                 
+20      11825.00 
+
+2./* Write a SQL query to display the average salary and job count per department, 
+sorted by department number and average salary descending.
+
+
++--------+-------------+------------+
+| deptno | AVG(sal)    | COUNT(job) |
++--------+-------------+------------+
+*/
+USE test;
+
+SELECT deptno, AVG(sal), COUNT(job)
+FROM emp
+GROUP BY deptno
+ORDER BY deptno ASC, AVG(sal) DESC;
+
+case=1
+output=
+deptno  AVG(sal)        COUNT(job)                                              
+10      1783.333333     3                                                       
+20      1970.833333     6                                                       
+30      1866.666667     3                                                       
+40      3125.000000     2 
+
+3./* Write a SQL query to list the total commission per department, excluding 
+department 40, ordered by total commission.
+
++--------+------------+
+| deptno | total_comm |
++--------+------------+
+*/
+USE test; 
+
+SELECT deptno, COALESCE(SUM(comm), 0) AS total_comm
+FROM emp
+WHERE deptno <> 40
+GROUP BY deptno
+ORDER BY total_comm;
+
+case=1
+output=
++--------+------------+
+| deptno | total_comm |
++--------+------------+
+|     20 |       0.00 |
+|     10 |     300.00 |
+|     30 |     500.00 |
++--------+------------+                                                                 
+                
+4./* Write a SQL query to find the maximum salary and employee count per department 
+for departments with more than 2 employees.
+
++--------+----------+----------+
+| deptno | MAX(sal) | COUNT(*) |
++--------+----------+----------+
+*/
+USE test; 
+
+SELECT deptno, MAX(sal), COUNT(*)
+FROM emp
+GROUP BY deptno
+HAVING COUNT(*) > 2;
+
+case=1
+output=
+deptno  MAX(sal)        COUNT(*)                                                
+10      2450.00 3                                                               
+20      3000.00 6                                                               
+30      2850.00 3
+
+5. /* Write a SQL query to show employees ordered by salary descending and then by 
+employee name ascending.
+
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+*/
+USE test; 
+
+SELECT *
+FROM emp
+ORDER BY sal DESC, ename ASC;
+
+case=1
+output=
+empno   ename   job     mgr     hiredate        sal     comm    deptno          
+7839    KEVIN   PRESIDENT       NULL    1990-06-09      5000.00 0.00    40      
+7902    FORD    ANALYST 7566    1997-12-05      3000.00 NULL    20              
+7788    SCOTT   ANALYST 7566    1996-03-05      3000.00 NULL    20              
+7566    JONES   MANAGER 7839    1995-10-31      2975.00 NULL    20              
+7698    BLAKE   MANAGER 7839    1992-06-11      2850.00 NULL    30              
+7782    CLARK   MANAGER 7839    1993-05-14      2450.00 NULL    10              
+7499    ALLEN   SALESMAN        7698    1998-08-15      1600.00 300.00  10      
+7844    KEVIN   SALESMAN        7698    1995-06-04      1500.00 0.00    30      
+7934    FORD    CLERK   7782    2000-01-21      1300.00 NULL    10              
+7521    ALLEN   SALESMAN        7698    1996-03-26      1250.00 500.00  30      
+7654    MARTIN  SALESMAN        7698    1998-12-05      1250.00 1400.00 40      
+7876    KEVIN   CLERK   7788    1999-06-04      1100.00 NULL    20              
+7900    JAMES   CLERK   7698    2000-06-23      950.00  NULL    20              
+7369    SMITH   CLERK   7902    1993-06-13      800.00  0.00    20                                                                
+                
+6./* Write a SQL query to retrieve the total salary per job where the total salary 
+is less than 10000, ordered by total salary descending.
+
++-----------+----------+
+| job       | SUM(sal) |
++-----------+----------+
+*/
+USE test; 
+
+SELECT job, SUM(sal)
+FROM emp
+GROUP BY job
+HAVING SUM(sal) < 10000
+ORDER BY SUM(sal) DESC;
+
+case=1
+output=
+job     SUM(sal)                                                                
+MANAGER 8275.00                                                                 
+ANALYST 6000.00                                                                 
+SALESMAN        5600.00                                                         
+PRESIDENT       5000.00                                                         
+CLERK   4150.00                                                                 
+                
+7. /* Write a SQL query to list the total salary and employee count per department, 
+excluding employees named 'FORD'.
+
+
++--------+----------+----------+
+| deptno | SUM(sal) | COUNT(*) |
++--------+----------+----------+
+*/
+USE test; 
+
+SELECT deptno, SUM(sal), COUNT(*)
+FROM emp
+WHERE ename <> 'FORD'
+GROUP BY deptno;
+
+case=1
+output=
+deptno  SUM(sal)        COUNT(*)                                                
+10      4050.00 2                                                               
+20      8825.00 5                                                               
+30      5600.00 3                                                               
+40      6250.00 2  
+
+8. /* Write a SQL query to find the average salary per job in departments other
+than 10, ordered by job.
+
+
++-----------+-------------+
+| job       | AVG(sal)    |
++-----------+-------------+
+*/
+USE test;
+
+SELECT job, AVG(sal)
+FROM emp
+WHERE deptno <> 10
+GROUP BY job
+ORDER BY job;
+
+case=1
+output=
+job     AVG(sal)                                                                
+ANALYST 3000.000000                                                             
+CLERK   950.000000                                                              
+MANAGER 2912.500000                                                             
+PRESIDENT       5000.000000                                                     
+SALESMAN        1333.333333 
+
+9. /* 
+
+Write a SQL query to display all employees With department name Only for departments having more than 2 employees.
+
++-------+-------+----------+------+------------+---------+--------+--------+------------+
+| empno | ename | job      | mgr  | hiredate   | sal     | comm   | deptno | dname      |
++-------+-------+----------+------+------------+---------+--------+--------+------------+
+
+*/
+USE test; 
+
+SELECT e.empno, e.ename, e.job, e.mgr, e.hiredate, e.sal, e.comm, e.deptno, d.dname
+FROM emp e
+JOIN dept d ON e.deptno = d.deptno
+WHERE e.deptno IN (
+    SELECT deptno
+    FROM emp
+    GROUP BY deptno
+    HAVING COUNT(*) > 2
+)
+ORDER BY 
+    e.deptno ASC,
+    (SELECT SUM(sal) FROM emp WHERE deptno = e.deptno) DESC,
+    e.job ASC,
+    e.sal DESC;
+
+case=1
+output=
++-------+-------+----------+------+------------+---------+--------+--------+------------+
+| empno | ename | job      | mgr  | hiredate   | sal     | comm   | deptno | dname      |
++-------+-------+----------+------+------------+---------+--------+--------+------------+
+|  7934 | FORD  | CLERK    | 7782 | 2000-01-21 | 1300.00 |   NULL |     10 | Accounting |
+|  7782 | CLARK | MANAGER  | 7839 | 1993-05-14 | 2450.00 |   NULL |     10 | Accounting |
+|  7499 | ALLEN | SALESMAN | 7698 | 1998-08-15 | 1600.00 | 300.00 |     10 | Accounting |
+|  7788 | SCOTT | ANALYST  | 7566 | 1996-03-05 | 3000.00 |   NULL |     20 | Research   |
+|  7902 | FORD  | ANALYST  | 7566 | 1997-12-05 | 3000.00 |   NULL |     20 | Research   |
+|  7876 | KEVIN | CLERK    | 7788 | 1999-06-04 | 1100.00 |   NULL |     20 | Research   |
+|  7900 | JAMES | CLERK    | 7698 | 2000-06-23 |  950.00 |   NULL |     20 | Research   |
+|  7369 | SMITH | CLERK    | 7902 | 1993-06-13 |  800.00 |   0.00 |     20 | Research   |
+|  7566 | JONES | MANAGER  | 7839 | 1995-10-31 | 2975.00 |   NULL |     20 | Research   |
+|  7698 | BLAKE | MANAGER  | 7839 | 1992-06-11 | 2850.00 |   NULL |     30 | Sales      |
+|  7844 | KEVIN | SALESMAN | 7698 | 1995-06-04 | 1500.00 |   0.00 |     30 | Sales      |
+|  7521 | ALLEN | SALESMAN | 7698 | 1996-03-26 | 1250.00 | 500.00 |     30 | Sales      |
++-------+-------+----------+------+------------+---------+--------+--------+------------+
+
+10. /* Write a SQL query to display the employee count and total salary per 
+department for departments with total salary over 4000.
+
++--------+----------+----------+
+| deptno | COUNT(*) | SUM(sal) |
++--------+----------+----------+
+
+*/
+USE test; 
+
+SELECT deptno, COUNT(*), SUM(sal)
+FROM emp
+GROUP BY deptno
+HAVING SUM(sal) > 4000;
+
+case=1
+output=
+deptno  COUNT(*)        SUM(sal)                                                
+10      3       5350.00                                                         
+20      6       11825.00                                                        
+30      3       5600.00                                                         
+40      2       6250.00   
