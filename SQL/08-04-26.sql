@@ -139,7 +139,8 @@ emp ==>   empno int(4) primary key, ename varchar(50) not null,
 +--------+------------+
 */
 USE fs; 
-
+select ename,dname from emp,dept;
+select ename,dname from emp cross join dept;
 
 /* Write a SQL query to list departments with employees earning more than 2500 
 using EXISTS.
@@ -160,6 +161,8 @@ emp ==>   empno int(4) primary key, ename varchar(50) not null,
 +--------+------------+
 */
 USE fs; 
+
+select distinct(dept.deptno),(dept.dname) from dept left join emp on emp.deptno=dept.deptno where sal>2500;
 
 /* Write a SQL query to find departments with number of employees earning less 
 than 1000 using NOT EXISTS.
@@ -224,3 +227,5 @@ emp ==>   empno int(4) primary key, ename varchar(50) not null,
 */
 USE fs; 
 
+select empno,ename,dept.deptno,dept.dname,dept.location from emp left join dept on emp.deptno=dept.deptno union
+select empno,ename,dept.deptno,dept.dname,dept.location from emp right join dept on emp.deptno=dept.deptno;

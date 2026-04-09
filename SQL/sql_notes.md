@@ -109,3 +109,103 @@ Expected Output Columns:
 +--------+------------------------+
 
 select count(mgr) as cnt,deptno from emp group by deptno having cnt>(select avg(cnt) from (select deptno,count(mgr) as cnt from emp group by deptno) emp);
+
+
+cross join is used to retrive each and every possible combination from multiple tables 
+Example:  Write a SQL query to generate all possible employee-department combinations 
+using CROSS JOIN.
+
+Tables:
+------
+salgrade ==> grade int(4) primary key, losal decimal(10,2),  hisal decimal(10,2) 
+
+dept==>   
+deptno int(2)primary key,dname varchar(50)not null, location varchar(50)not null
+
+emp ==>   empno int(4) primary key, ename varchar(50) not null,
+          job varchar(50) not null,  mgr int(4),  hiredate date,
+          sal decimal(10,2),  comm decimal(10,2),  deptno int(2)
+
+
++--------+------------+
+| ename  | dname      |
++--------+------------+
+*/
+USE fs; 
+select ename,dname from emp,dept;
+select ename,dname from emp cross join dept;
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| SMITH  | Finance    |
+| SMITH  | Operations |
+| SMITH  | Sales      |
+| SMITH  | Research   |
+| SMITH  | Accounting |
+| ALLEN  | Finance    |
+| ALLEN  | Operations |
+| ALLEN  | Sales      |
+| ALLEN  | Research   |
+| ALLEN  | Accounting |
+| ALLEN  | Finance    |
+| ALLEN  | Operations |
+| ALLEN  | Sales      |
+| ALLEN  | Research   |
+| ALLEN  | Accounting |
+| JONES  | Finance    |
+| JONES  | Operations |
+| JONES  | Sales      |
+| JONES  | Research   |
+| JONES  | Accounting |
+| MARTIN | Finance    |
+| MARTIN | Operations |
+| MARTIN | Sales      |
+| MARTIN | Research   |
+| MARTIN | Accounting |
+| BLAKE  | Finance    |
+| BLAKE  | Operations |
+| BLAKE  | Sales      |
+| BLAKE  | Research   |
+| BLAKE  | Accounting |
+| CLARK  | Finance    |
+| CLARK  | Operations |
+| CLARK  | Sales      |
+| CLARK  | Research   |
+| CLARK  | Accounting |
+| SCOTT  | Finance    |
+| SCOTT  | Operations |
+| SCOTT  | Sales      |
+| SCOTT  | Research   |
+| SCOTT  | Accounting |
+| KEVIN  | Finance    |
+| KEVIN  | Operations |
+| KEVIN  | Sales      |
+| KEVIN  | Research   |
+| KEVIN  | Accounting |
+| KEVIN  | Finance    |
+| KEVIN  | Operations |
+| KEVIN  | Sales      |
+| KEVIN  | Research   |
+| KEVIN  | Accounting |
+| KEVIN  | Finance    |
+| KEVIN  | Operations |
+| KEVIN  | Sales      |
+| KEVIN  | Research   |
+| KEVIN  | Accounting |
+| JAMES  | Finance    |
+| JAMES  | Operations |
+| JAMES  | Sales      |
+| JAMES  | Research   |
+| JAMES  | Accounting |
+| FORD   | Finance    |
+| FORD   | Operations |
+| FORD   | Sales      |
+| FORD   | Research   |
+| FORD   | Accounting |
+| FORD   | Finance    |
+| FORD   | Operations |
+| FORD   | Sales      |
+| FORD   | Research   |
+| FORD   | Accounting |
++--------+------------+
+70 rows in set (0.01 sec)
