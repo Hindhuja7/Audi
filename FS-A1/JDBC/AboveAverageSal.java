@@ -29,35 +29,48 @@
 // Connection Handle exceptions appropriately.
 
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.Date;
+import java.sql.*;
 
 public class AboveAverageSal {
     public void fetchAboveAverageEmployees(Connection conn){
-        String sql = "select empno, ename, sal from emp where sal > (select avg(sal) from emp)";
-
-        try (
-             Statement smt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-             ResultSet rs = smt.executeQuery(sql)) {
-        System.out.println("EMPNO | ENAME | SAL");
+      String sql="select empno,ename,sal from emp where sal>(select avg(sal) from emp)";
+      try{
+        Statement smt=conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs=smt.executeQuery(sql);
+        System.out.println("EMPNO| ENAME | SAL  ");
         System.out.println("--------------------");
-        // print the records from here 
-        while (rs.next()) {
-                int empno = rs.getInt("empno");
-                String name = rs.getString("ename");
-                double sal = rs.getDouble("sal");
-                System.out.printf("%d | %-5s | %.2f%n", empno, name, sal);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        
+        while(rs.next())
+        {
+            int id=rs.getInt("empno");
+            String ename=rs.getString("ename");
+            double sal=rs.getDouble("sal");
+           System.out.printf("%d | %-5s | %.2f%n",id,ename,sal);
+        }
       }
-        
+      catch(Exception e)
+      {
+        e.printStackTrace();
+      }
 
     }
+     public static void main(String[] args)
+    {
+        try{
+            //Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn=DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/a1",
+                "root",
+                "Hindhuja@7"
+            );
+            AboveAverageSal a=new AboveAverageSal();
+            a.fetchAboveAverageEmployees(conn);
+             conn.close();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        }
             
 }
 

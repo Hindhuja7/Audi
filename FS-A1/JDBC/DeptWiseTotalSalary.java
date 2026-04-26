@@ -29,13 +29,14 @@
 // - Handle exceptions properly
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class DeptWiseTotalSalary {
 
     public void fetchDeptWiseSalary(Connection conn){
-        String sql="select dept.deptno,dname,sum(sal) as total_sal from dept inner join emp on emp.deptno=dept.deptno group by emp.deptno";
+        String sql="select dept.deptno,dname,sum(sal) as total_sal from dept join emp on emp.deptno=dept.deptno group by dept.deptno";
         try(Statement smt=conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
         ResultSet rs=smt.executeQuery(sql)){
         System.out.println("DEPTNO | DNAME | TOTAL_SALARY");
@@ -52,7 +53,23 @@ public class DeptWiseTotalSalary {
         {
             e.printStackTrace();
         }
+    }
         // Write code here to fetch and print records
-        
+         public static void main(String[] args)
+    {
+        try{
+            //Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn=DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/a1",
+                "root",
+                "Hindhuja@7"
+            );
+            DeptWiseTotalSalary a=new DeptWiseTotalSalary();
+            a.fetchDeptWiseSalary(conn);
+             conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
