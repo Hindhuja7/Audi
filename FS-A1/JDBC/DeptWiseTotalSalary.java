@@ -36,17 +36,16 @@ import java.sql.Statement;
 public class DeptWiseTotalSalary {
 
     public void fetchDeptWiseSalary(Connection conn){
-        String sql="select dept.deptno,dname,sum(sal) as total_sal from dept join emp on emp.deptno=dept.deptno group by dept.deptno";
+        String sql="select e1.ename,e1.sal from emp e1 join emp e2 on e1.mgr=e2.empno where e1.sal>e2.sal";
         try(Statement smt=conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
         ResultSet rs=smt.executeQuery(sql)){
-        System.out.println("DEPTNO | DNAME | TOTAL_SALARY");
+        System.out.println(" avg(sal) | DNAME");
         System.out.println("--------------------------------");
         while(rs.next())
         {
-            int dept=rs.getInt("deptno");
-            String dname=rs.getString("dname");
-            double sal=rs.getDouble("total_sal");
-            System.out.printf("%d | %-5s | %.1f%n",dept,dname,sal);
+            double sal=rs.getDouble("sal");
+            String dname=rs.getString("ename");
+            System.out.printf("%.1f |%-5s%n",sal,dname);
         }
         }
         catch(Exception e)

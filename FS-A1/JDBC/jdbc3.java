@@ -4,11 +4,11 @@
 import java.sql.*;
 
 class jdbc3 {
-  static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-  static final String DB_URL = "jdbc:mysql://localhost/test";
+  static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
+  static final String DB_URL = "jdbc:mysql://localhost/a1";
     
   static final String USER = "root";
-  static final String PASS = "root";
+  static final String PASS = "Hindhuja@7";
      
   public static void main(String[] args) throws SQLException {  
     Connection conn = null;
@@ -24,14 +24,14 @@ class jdbc3 {
       stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, 
           ResultSet.CONCUR_UPDATABLE);
 
-      stmt = conn.createStatement();
+      //stmt = conn.createStatement();
 
       String sql;
       sql = "SELECT empno, ename, sal from emp";
       rs = stmt.executeQuery(sql);
 
       rs.absolute(2); 
-      rs.updateString("ename", "Allen"); 
+      rs.updateString("ename", "BOB"); 
       rs.updateRow();       
     }   
     catch(Exception e){

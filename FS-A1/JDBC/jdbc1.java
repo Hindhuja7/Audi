@@ -16,7 +16,7 @@ class jdbc1 {
     ResultSet rs = null;
     
     try{
-      Class.forName(JDBC_DRIVER);
+     // Class.forName(JDBC_DRIVER);
       System.out.println("Connecting to database...");
 
       conn = DriverManager.getConnection(DB_URL,USER,PASS);
@@ -25,7 +25,7 @@ class jdbc1 {
       stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
 		  ResultSet.CONCUR_READ_ONLY);
       String sql;
-      sql = "SELECT empno, ename, sal from emp where empno > 7600";
+      sql = "SELECT empno, ename, sal from emp";
       rs = stmt.executeQuery(sql);
 
       while(rs.next()){
@@ -41,15 +41,15 @@ class jdbc1 {
       int result = stmt.executeUpdate(update);
       System.out.println("result " + result);
 
-      sql = "SELECT empno, ename, sal from emp where empno > 7600";
+      sql = "SELECT empno, ename, sal from emp";
       rs = stmt.executeQuery(sql);
 
       System.out.println("After update");
-      while(rs.next()){                 
+      while(rs.next()){
+        int empno  = rs.getInt("EMPNO");
         String name = rs.getString("ENAME");
         int sal=rs.getInt("sal");
-        System.out.print(" empno : " + 
-        empno);
+        System.out.print(" empno : " +empno);
         System.out.print(" name : " + name);
         System.out.println(" sal : " + sal);
       }
