@@ -48,8 +48,65 @@
  
 
 
-package Graphs;
-
+import java.util.*;
 public class connected_compo {
-    
+    int v;
+    List<List<Integer>> l;
+    connected_compo(int v)
+    {
+        this.v=v;
+        l=new ArrayList<>();
+        for(int i=0;i<v;i++)
+        {
+            l.add(new ArrayList<>());
+        }
+    }
+    public void edge(int u,int v)
+    {
+        l.get(u).add(v);
+        l.get(v).add(u);
+    }
+    public void dfs( int v,boolean[] visited)
+    {
+        visited[v]=true;
+        System.out.print(v + " ");
+        for(int neigh:l.get(v))
+        {
+            if(!visited[neigh])
+            {
+                dfs(neigh,visited);
+            }
+        }
+    }
+    public void conn()
+    {
+        boolean[] visited=new boolean[v];
+        int count=0;
+        for(int i=0;i<v;i++)
+        {
+            if(!visited[i])
+            {
+                System.out.print("componenets: "+(count+1)+":");
+                dfs(i,visited);
+                System.out.println();
+                count++;
+            }
+        }
+        System.out.println("Total components: "+count);
+    }
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int x=sc.nextInt();
+        int e=sc.nextInt();
+        connected_compo g = new connected_compo(x);
+        for(int i=0;i<e;i++)
+        {
+            int u=sc.nextInt();
+            int v=sc.nextInt();
+            g.edge(u,v);
+        }
+        System.out.println("connected componenets: ");
+        g.conn();
+    }
 }

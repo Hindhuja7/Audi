@@ -209,3 +209,19 @@ select ename,dname from emp cross join dept;
 | FORD   | Accounting |
 +--------+------------+
 70 rows in set (0.01 sec)
+
+
+when u r joining 2 tables having column with dates u r not supposed join with ids u must use ids to match tables
+example: select ename,date from emp as e1 join emp as e2 where e1.eid=e2.eid; completely wrong because dates have unique even if we join with ids it stores as differnt column even though 10=10 it referse to different column due to date col
+so u must suppose select ename,date from emp as e1 join emp as e2 where e1.date=e2.date;
+
+when u want to check with previous day from current day u can use datediff(e1.date,e2.date)=1
+
+-> delete all duplicate emails, keeping only one unique email with the smallest id.
+      delete p1 from person as p1 join person as p2 on p1.email=p2.email where p1.id>p2.id;
+
+we have one imp concept,when u try retrive to data from column which has NULL values example in emp table comm which has both 0 and null and non null values so command
+-> select comm,ename from emp where comm is null ;
+ we wont use select comm,ename from emp where comm=null because null value is unkown if we try to compare null value it doesnt retrive any data, it just return empty set if we try to compare 5=5 it return true but null=null is always false because of unknown value
+
+ 

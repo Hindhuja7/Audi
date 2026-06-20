@@ -1,4 +1,4 @@
-package Graphs;
+
 import java.util.*;
 public class kahn_algo {
     public static void edge(List<List<Integer>> l, int u,int v)
