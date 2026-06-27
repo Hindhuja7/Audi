@@ -11,6 +11,10 @@ public class remove_kchars {
             String s = sc.nextLine();
             int k=sc.nextInt();
            Stack<Node> st=new Stack<>();
+            if (k == 1) {
+            System.out.print("");
+            return;
+        }
            for(int i=0;i<s.length();i++)
            {
             if(st.isEmpty())
